@@ -25,9 +25,9 @@ from tqdm import tqdm
 # --------------------------------------------------------------------------
 # Config
 # --------------------------------------------------------------------------
-MODEL_NAME = "llama3.2:1b"   # chosen for full GPU offload on a 4GB card -- see note below
-INPUT_PATH = Path("anno_lexical_test_clean.csv")   # copy this from your outputs folder
-OUTPUT_PATH = Path("llm_bias_labels.csv")
+MODEL_NAME = "llama3.2:3b"   # chosen for full GPU offload on a 4GB card -- see note below
+INPUT_PATH = Path("./data/outputs/anno_lexical_test_clean.csv")   # copy this from your outputs folder
+OUTPUT_PATH = Path("./data/outputs/llm_bias_labels.csv")
 
 # NOTE on MODEL_NAME: at 1B parameters, instruction-following and JSON-schema adherence
 # are meaningfully weaker than 7B-class models -- watch the parse_failed / n_retries
@@ -35,7 +35,7 @@ OUTPUT_PATH = Path("llm_bias_labels.csv")
 # guide: >10-15%), that's a real signal to either simplify the prompt further or fall
 # back to the API route discussed earlier, rather than a sign something is broken.
 
-SAMPLE_SIZE = 25          # START HERE: small first run to check parse reliability before scaling up
+SAMPLE_SIZE = 300          # START HERE: small first run to check parse reliability before scaling up
 RANDOM_STATE = 42
 MAX_RETRIES = 3           # per-sentence retries on malformed/invalid JSON
 REQUEST_TIMEOUT_RETRY_SLEEP = 2  # seconds between retries
